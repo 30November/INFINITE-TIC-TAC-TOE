@@ -17,58 +17,19 @@ void printboard(char choice[])
 
 char checkwin(char s,char choice[])
 {
-    //Vertical winning's
-    if (choice[0] == s && choice[3] == s && choice[6] == s) return s;
-    if (choice[1] == s && choice[4] == s && choice[7] == s) return s;
-    if (choice[2] == s && choice[5] == s && choice[8] == s) return s;
     
-    //Horizontal winnings
-    if (choice[0] == s && choice[1] == s && choice[2] == s)return s;
-    if (choice[3] == s && choice[4] == s && choice[5] == s)return s;
-    if (choice[6] == s && choice[7] == s && choice[8] == s) return s;
-    
-	//Diagonal winning 
-    if (choice[0] == s && choice[4] == s && choice[8] == s) return s;
-    if (choice[2] == s && choice[4] == s && choice[6] == s) return s;
+    int i;
+    for (i = 0; i < 3 ; i++)
+    {
+    	if (choice[i]==s && choice[i+3]==s && choice[i+6]==s) return s; //V
+    	if (choice[3*i]==s && choice[3*i+1]==s && choice[3*i+2]==s) return s; //H
+    	if (choice[i]==s && choice[4]==s && choice[8-i]==s) return s; //D
+	}
 
     return 'A';
     
 }
 
-void replace(int pos,char choice[])
-{
-	int index=pos-1;
-	switch(index)
-	{
-		case 0: 
-		choice[index]='1';
-		break;
-		case 1:
-		choice[index]='2';
-		break;
-		case 2: 
-		choice[index]='3';
-		break;
-		case 3: 
-		choice[index]='4';
-		break;
-		case 4: 
-		choice[index]='5';
-		break;
-		case 5: 
-		choice[index]='6';
-		break;
-		case 6: 
-		choice[index]='7';
-		break;
-		case 7: 
-		choice[index]='8';
-		break;
-		case 8: 
-		choice[index]='9';
-		break;
-	}
-}
 
 int main()
 {
@@ -77,7 +38,6 @@ int main()
     printf("\n-----------------TIC TAC TOE GAME ----------------\n");
     printf("\n---------------- *BY BISWAYAN B.MAL* ---------------\n");
     printf("\n---------------- *CON. BY AYUSHMAN GHOSH* ---------------\n");
-//    printf("\nNOTE:'#' and  warns at the position where your oldest sign will get deleted.\n");
     int pos;
     char choice[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
     int p1[3]={0,0,0},index1=0;
@@ -86,17 +46,16 @@ int main()
     {
         // for Player 1
         labelX:
-        if (p1[index1]) printf("Old 'X' will get deleted");
-//		choice[p1[index1]-1]='#';
         printboard(choice);
+		if (p1[index1]) printf("\nALERT: Old 'X' will get deleted\n");
         printf("Enter the position Player1 (X):");
         scanf("%d", &pos);
         if  (1<=pos && pos<=9)
 		{
-        	if (choice[pos-1]=='X' || choice[pos-1]=='O' ||choice[pos-1]=='#')
-        	{printf("	ALREADY OCUUPIED	"); goto labelX;}
+        	if (choice[pos-1]=='X' || choice[pos-1]=='O')
+        	{printf("\n 	ALREADY OCUUPIED	\n"); goto labelX;}
         	
-        	if (p1[index1]) replace(p1[index1],choice);
+        	if (p1[index1]) choice[p1[index1] - 1] = p1[index1] + 48;
         	
         	p1[index1]=pos;
 			index1=(index1+1)%3;	
@@ -106,7 +65,7 @@ int main()
 		}
 		else
 		{ 
-			printf("    INVALID INPUT    ");
+			printf("\n    INVALID INPUT    \n");
 			goto labelX;
 		}
 
@@ -119,17 +78,16 @@ int main()
         
         // for Player 2
         labelO:
-        if (p2[index2]) printf("Old 'O' will get deleted");
-//		choice[p2[index2]-1]='@';	
         printboard(choice);
-        printf("Enter the position player2 (O):");
+		if (p2[index2]) printf("\nALERT: Old 'O' will get deleted\n");	
+        printf("Enter the position Player2 (O):");
         scanf("%d", &pos);
         if  (1<=pos && pos<=9)
 		{
-        	if (choice[pos-1]=='X' || choice[pos-1]=='O' ||choice[pos-1]=='#')
-        	{printf("	ALREADY OCUUPIED	"); goto labelO;}
+        	if (choice[pos-1]=='X' || choice[pos-1]=='O')
+        	{printf("\n 	ALREADY OCUUPIED	\n"); goto labelO;}
         	
-        	if (p2[index2]) replace(p2[index2],choice);
+        	if (p2[index2]) choice[p2[index2] - 1] = p2[index2] + 48;
         	
         	p2[index2]=pos;
 			index2=(index2+1)%3;
@@ -138,7 +96,7 @@ int main()
 		}
 		else
 		{ 
-			printf("Invalid Input");
+			printf("\n    INVALID INPUT    \n");
 			goto labelO;
 		}
 
