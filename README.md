@@ -3,7 +3,7 @@ This Tic Tac Toe is very old game as far we knew , since all of us played in our
 But the frustraction things is that the draw condition when there is no space to put more.
 Again and again draw makes us bore after the certain period of time.
 For that we created this one.
-<p "bold"> We continuosly update (commit) like modifying and adding for better feature </p>
+<p> We continuosly update (commit) like <highlight color = "blue">modifying and adding </highlight> for better feature </p>
 <h3> List of changes according to time</h3>
 <ol>
   <li>Added the condition of draw</li>
