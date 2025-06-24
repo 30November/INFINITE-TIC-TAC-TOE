@@ -1,6 +1,6 @@
 <h3>Hello guys,</h3><br>
 This Tic Tac Toe is very old game as far we knew , since all of us played in our childhood
-But the frustraction things is that the draw condition when there is no space to put more.
+But the frustraction things is that the draw condition when there is neither space to put more nor to win.
 Again and again draw makes us bore after the certain period of time.
 For that we created this one.
 <p> We continuosly update (commit) like <mark>modifying and adding</mark> for better feature </p>
